@@ -6,8 +6,26 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-!User.find_by(email: 'admin@remitano.com') && User.create!(
+user = User.first || User.create(
   email: 'admin@remitano.com',
   password: '@remitano.com',
   name: 'Remitano',
 )
+
+movies = [
+  {
+    title: 'First movie',
+    description: 'Just the first movie',
+  },
+  {
+    title: 'Second movie',
+    description: 'Another movie'
+  },
+  {
+    title: 'Third movie',
+    description: 'And another one'
+  }
+]
+movies.each do |movie_hash|
+  Movie.create(movie_hash.merge(shared_by: user.id))
+end
