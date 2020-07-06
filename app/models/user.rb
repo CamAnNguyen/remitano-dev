@@ -1,8 +1,12 @@
+# frozen_string_literal: true
+
+# Model for User table
 class User < ApplicationRecord
+  include DeviseTokenAuth::Concerns::User
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :recoverable, :rememberable, :validatable
 
   validates_presence_of :email, :encrypted_password, :created_at, :updated_at
 

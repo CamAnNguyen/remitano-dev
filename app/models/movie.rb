@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Model for Movie table
 class Movie < ApplicationRecord
   validates_presence_of :title, :shared_by, :created_at, :updated_at
 

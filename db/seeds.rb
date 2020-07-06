@@ -9,13 +9,13 @@
 user = User.first || User.create(
   email: 'admin@remitano.com',
   password: '@remitano.com',
-  name: 'Remitano',
+  name: 'Remitano'
 )
 
 movies = [
   {
     title: 'First movie',
-    description: 'Just the first movie',
+    description: 'Just the first movie'
   },
   {
     title: 'Second movie',
