@@ -1,26 +1,33 @@
-class Api::V1::UsersController < ApplicationController
-  def index
-    render json: User.all
-  end
+# frozen_string_literal: true
 
-  def create
-    user = User.create(user_params)
-    render json: user
-  end
+module Api
+  module V1
+    # User controller/API
+    class UsersController < BaseController
+      def index
+        render json: User.all
+      end
 
-  def destroy
-    User.destroy(params[:id])
-  end
+      def create
+        user = User.create(user_params)
+        render json: user
+      end
 
-  def update
-    user = User.find(params[:id])
-    user.update_attributes(fruit_params)
-    render json: user
-  end
+      def destroy
+        User.destroy(params[:id])
+      end
 
-  private
+      def update
+        user = User.find(params[:id])
+        user.update_attributes(fruit_params)
+        render json: user
+      end
 
-  def user_params
-    params.require(:user).permit(:id, :name, :email, :encrypted_password)
+      private
+
+      def user_params
+        params.require(:user).permit(:id, :name, :email, :encrypted_password)
+      end
+    end
   end
 end

@@ -21,10 +21,11 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
+
 # Flexible authentication solution for Rails
 gem 'devise', '~> 4.7.0'
-# JWT with devise
-gem 'devise-jwt', '~> 0.7.0'
+# Devise Token Auth
+gem 'devise_token_auth'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
