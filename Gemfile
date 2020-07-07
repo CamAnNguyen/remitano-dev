@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise', '~> 4.7.0'
 # Devise Token Auth
 gem 'devise_token_auth'
+# Soft delete support
+gem 'acts_as_paranoid', '~> 0.6.3'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
