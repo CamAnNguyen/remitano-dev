@@ -22,12 +22,4 @@ RSpec.describe User, type: :model do
   it 'is not valid with an empty password' do
     expect(FactoryBot.build(:user, password: '')).not_to be_valid
   end
-
-  it 'is not valid without a created_at' do
-    expect(FactoryBot.build(:user, created_at: nil)).not_to be_valid
-  end
-
-  it 'is not valid without a updated_at' do
-    expect(FactoryBot.build(:user, updated_at: nil)).not_to be_valid
-  end
 end

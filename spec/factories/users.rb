@@ -5,7 +5,5 @@ FactoryBot.define do
     sequence(:email) { |n| "foobar#{n}@bar.de" }
     name { 'name' }
     password { 'test_password' }
-    created_at { DateTime.now }
-    updated_at { DateTime.now }
   end
 end

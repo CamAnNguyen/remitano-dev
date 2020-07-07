@@ -7,8 +7,8 @@ describe MovieRating, type: :model do
     expect(FactoryBot.build(:movie_rating)).to be_valid
   end
 
-  it 'is valid without a like' do
-    expect(FactoryBot.build(:movie_rating, like: nil)).to be_valid
+  it 'is not valid without a like' do
+    expect(FactoryBot.build(:movie_rating, like: nil)).not_to be_valid
   end
 
   describe 'Associations' do

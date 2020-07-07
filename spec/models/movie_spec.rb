@@ -23,14 +23,6 @@ describe Movie, type: :model do
     expect(FactoryBot.build(:movie, description: '')).to be_valid
   end
 
-  it 'is not valid without a created_at' do
-    expect(FactoryBot.build(:movie, created_at: nil)).not_to be_valid
-  end
-
-  it 'is not valid without a updated_at' do
-    expect(FactoryBot.build(:movie, updated_at: nil)).not_to be_valid
-  end
-
   describe 'Associations' do
     it { is_expected.to belong_to(:creator) }
   end

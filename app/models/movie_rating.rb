@@ -2,11 +2,10 @@
 
 # MovieRating class, contains rating information from users to movies
 class MovieRating < ApplicationRecord
-  validates_presence_of :created_at, :updated_at
+  acts_as_paranoid
 
   belongs_to :user
   belongs_to :movie
 
-  validates_presence_of :movie
-  validates_presence_of :user
+  validates_presence_of :movie, :user, :like
 end

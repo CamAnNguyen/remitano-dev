@@ -27,5 +27,6 @@ movies = [
   }
 ]
 movies.each do |movie_hash|
-  Movie.create(movie_hash.merge(shared_by: user.id))
+  m = Movie.create(movie_hash.merge(creator: user))
+  MovieRating.create(user: user, movie: m, like: true)
 end
