@@ -1,37 +1,33 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe User, :type => :model do
-  subject {
-    described_class.new(
-      name: "Anonymous",
-      email: "test@remitano.com",
-      password: "@remitano.com",
-      created_at: DateTime.now,
-      updated_at: DateTime.now
-    )
-  }
-
-  it "is valid with valid attributes" do
-    expect(subject).to be_valid
+RSpec.describe User, type: :model do
+  it 'is valid with valid attributes' do
+    expect(FactoryBot.build(:user)).to be_valid
   end
 
-  it "is not valid without a email" do
-    subject.email = nil
-    expect(subject).to_not be_valid
+  it 'is not valid with a null email' do
+    expect(FactoryBot.build(:user, email: nil)).not_to be_valid
   end
 
-  it "is not valid without a password" do
-    subject.password = nil
-    expect(subject).to_not be_valid
+  it 'is not valid with an empty email' do
+    expect(FactoryBot.build(:user, email: '')).not_to be_valid
   end
 
-  it "is not valid without a created_at" do
-    subject.created_at = nil
-    expect(subject).to_not be_valid
+  it 'is not valid without a password' do
+    expect(FactoryBot.build(:user, password: nil)).not_to be_valid
   end
 
-  it "is not valid without a updated_at" do
-    subject.updated_at = nil
-    expect(subject).to_not be_valid
+  it 'is not valid with an empty password' do
+    expect(FactoryBot.build(:user, password: '')).not_to be_valid
+  end
+
+  it 'is not valid without a created_at' do
+    expect(FactoryBot.build(:user, created_at: nil)).not_to be_valid
+  end
+
+  it 'is not valid without a updated_at' do
+    expect(FactoryBot.build(:user, updated_at: nil)).not_to be_valid
   end
 end

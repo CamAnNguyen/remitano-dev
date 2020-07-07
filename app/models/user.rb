@@ -7,6 +7,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :validatable
+  before_save -> { skip_confirmation! }
 
   validates_presence_of :email, :encrypted_password, :created_at, :updated_at
 
