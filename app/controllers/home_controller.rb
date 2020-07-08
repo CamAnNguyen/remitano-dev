@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Main React App controller
-class BaseController < ApplicationController
+class HomeController < ApplicationController
   respond_to :json
 
   before_action :authenticate_user!

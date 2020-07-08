@@ -3,7 +3,7 @@
 module Api
   module V1
     # User controller/API
-    class UsersController < BaseController
+    class UsersController < HomeController
       def index
         render json: User.all
       end
