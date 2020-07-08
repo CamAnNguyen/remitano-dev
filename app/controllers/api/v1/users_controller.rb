@@ -4,6 +4,8 @@ module Api
   module V1
     # User controller/API
     class UsersController < HomeController
+      before_action :authenticate_user!
+
       def index
         render json: User.all
       end
