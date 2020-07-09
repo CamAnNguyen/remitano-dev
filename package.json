@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "@babel/preset-react": "^7.10.1",
+    "@fortawesome/fontawesome-free": "^5.13.1",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
@@ -10,6 +11,8 @@
     "bootstrap": "^4.5.0",
     "humps": "^2.0.1",
     "immutable": "^4.0.0-rc.12",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-bootstrap": "^1.1.1",

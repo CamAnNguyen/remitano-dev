@@ -34,8 +34,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Use Bootstrap CSS
 gem 'bootstrap', '~> 4.5'
-# FontAwesome
-gem 'font-awesome-rails', '~> 4.7'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
