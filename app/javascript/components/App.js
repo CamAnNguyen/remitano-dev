@@ -1,5 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { Container, Row } from 'react-bootstrap';
 
 import HeaderContainer from '../containers/HeaderContainer';
 import ContentContainer from '../containers/ContentContainer';
@@ -10,10 +11,14 @@ export const store = reduxStore();
 function App() {
   return (
     <Provider store={store}>
-      <>
-        <HeaderContainer />
-        <ContentContainer />
-      </>
+      <Container className="app-container">
+        <Row className="main-header">
+          <HeaderContainer />
+        </Row>
+        <Row className="main-content">
+          <ContentContainer />
+        </Row>
+      </Container>
     </Provider>
   );
 }

@@ -1,3 +1,26 @@
 @import 'bootstrap';
-// @import '~bootstrap/scss/bootstrap.scss';
 @import '@fortawesome/fontawesome-free';
+
+.main-header {
+  justify-content: center;
+  margin: 5px;
+  border-bottom: 2px solid #ccc;
+}
+
+.main-title {
+  font-size: 32px;
+  margin-left: 5px;
+}
+
+.main-header-right {
+  margin-top: 10px;
+  margin-right: 0px;
+
+  form {
+    flex-direction: row-reverse;
+
+    button {
+      padding: 7px 7px 8px 7px;
+    }
+  }
+}
