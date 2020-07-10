@@ -2,14 +2,14 @@
 
 # Model for User table
 class User < ApplicationRecord
-  acts_as_paranoid
-
-  include DeviseTokenAuth::Concerns::User
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :recoverable, :rememberable, :validatable
-  before_save -> { skip_confirmation! }
+  devise :database_authenticatable, :registerable, :recoverable,
+         :rememberable, :validatable
+  include DeviseTokenAuth::Concerns::User
+  # before_save -> { skip_confirmation! }
+
+  acts_as_paranoid
 
   validates_presence_of :email, :encrypted_password
 

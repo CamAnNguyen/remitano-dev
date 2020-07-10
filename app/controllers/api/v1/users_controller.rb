@@ -4,17 +4,6 @@ module Api
   module V1
     # User controller/API
     class UsersController < HomeController
-      before_action :authenticate_user!
-
-      def index
-        render json: User.all
-      end
-
-      def create
-        user = User.create(user_params)
-        render json: user
-      end
-
       def destroy
         User.destroy(params[:id])
       end
