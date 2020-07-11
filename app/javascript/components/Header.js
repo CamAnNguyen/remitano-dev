@@ -1,14 +1,25 @@
 import React from 'react';
-import {
-  Button,
-  Col,
-  Form,
-  FormControl,
-} from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { Map } from 'immutable';
 
-// import NotificationContainer from '../containers/NotificationContainer';
+import { Col } from 'react-bootstrap';
 
-function Header() {
+import LoggedInHeader from './LoggedInHeader';
+import GuestHeader from './GuestHeader';
+
+function Header({
+  currentUser, loginAction, isSignedIn
+}) {
+  let rightHeader = (<GuestHeader loginAction={loginAction} />);
+
+  if (isSignedIn) {
+    rightHeader = (
+      <LoggedInHeader
+        currentUser={currentUser}
+      />
+    );
+  }
+
   return (
     <>
       <Col sm={4}>
@@ -18,32 +29,20 @@ function Header() {
         </span>
       </Col>
       <Col sm={8} className="main-header-right">
-        <Form inline>
-          <Button variant="secondary" size="sm" className="mb-2">
-            Login / Register
-          </Button>
-          <Form.Label htmlFor="headerFormInputPassword" srOnly>
-            Password
-          </Form.Label>
-          <FormControl
-            id="headerFormInputPassword"
-            placeholder="Password"
-            aria-label="Password"
-            className="mb-2 mr-sm-2"
-          />
-          <Form.Label htmlFor="headerFormInputEmail" srOnly>
-            Email
-          </Form.Label>
-          <FormControl
-            id="headerFormInputEmail"
-            placeholder="Email"
-            aria-label="Email"
-            className="mb-2 mr-sm-2"
-          />
-        </Form>
+        {rightHeader}
       </Col>
     </>
   );
 }
+
+Header.propTypes = {
+  currentUser: PropTypes.instanceOf(Map).isRequired,
+  loginAction: PropTypes.func.isRequired,
+  isSignedIn: PropTypes.bool
+};
+
+Header.defaultProps = {
+  isSignedIn: false
+};
 
 export default Header;
