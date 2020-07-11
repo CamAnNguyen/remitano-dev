@@ -3,22 +3,29 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {
-  signInUser, signOutUser, registerUser
+  signInUser,
+  signOutUser,
+  registerUser
 } from '../actions/authTokenActions';
 import { checkIdentity } from '../actions/identityActions';
-import { shareMovie } from '../actions/movieActions';
-import * as types from '../constants/actionTypes';
+import {
+  setContentView,
+  setLoading,
+  unsetLoading
+} from '../actions/uiActions';
+
+import { SHARE_MOVIE } from '../constants/contentViews';
 
 import Header from '../components/Header';
 
 const HeaderContainer = ({
-  currentUser, loginAction, logoutAction, shareMovie
+  currentUser, loginAction, logoutAction, toShareMovieView
 }) => (
   <Header
     currentUser={currentUser}
     loginAction={loginAction}
     logoutAction={logoutAction}
-    shareMovie={shareMovie}
+    toShareMovieView={toShareMovieView}
   />
 );
 
@@ -27,7 +34,7 @@ HeaderContainer.propTypes = {
   currentUser: PropTypes.object.isRequired,
   loginAction: PropTypes.func.isRequired,
   logoutAction: PropTypes.func.isRequired,
-  shareMovie: PropTypes.func.isRequired,
+  toShareMovieView: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -36,17 +43,17 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   loginAction: ({ email, password }) => {
-    dispatch({ type: types.SET_LOADING });
+    setLoading();
     dispatch(checkIdentity(email)).then((apiRes) => {
       if (apiRes.response.status === 200) {
         dispatch(signInUser({ email, password })).then(() => {
-          dispatch({ type: types.UNSET_LOADING });
+          unsetLoading();
         }).catch((err) => {
           console.log(err);
         });
       } else {
         dispatch(registerUser({ email, password })).then(() => {
-          dispatch({ type: types.UNSET_LOADING });
+          unsetLoading();
         }).catch((err) => {
           console.log(err);
         });
@@ -54,17 +61,12 @@ const mapDispatchToProps = (dispatch) => ({
     });
   },
   logoutAction: () => {
-    dispatch({ type: types.SET_LOADING });
+    setLoading();
     dispatch(signOutUser()).then(() => {
-      dispatch({ type: types.UNSET_LOADING });
+      unsetLoading();
     });
   },
-  shareMovie: () => {
-    dispatch({ type: types.SET_LOADING });
-    dispatch(shareMovie()).then(() => {
-      dispatch({ type: types.UNSET_LOADING });
-    });
-  }
+  toShareMovieView: () => dispatch(setContentView(SHARE_MOVIE)),
 });
 
 export default connect(
