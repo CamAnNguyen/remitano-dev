@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_11_134358) do
+ActiveRecord::Schema.define(version: 2020_07_11_141103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,9 @@ ActiveRecord::Schema.define(version: 2020_07_11_134358) do
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "deleted_at"
     t.string "youtube_url"
-    t.index ["title"], name: "index_movies_on_title", unique: true
+    t.string "youtube_id"
+    t.string "youtube_preview"
+    t.index ["youtube_id"], name: "index_movies_on_youtube_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -60,5 +62,4 @@ ActiveRecord::Schema.define(version: 2020_07_11_134358) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
-
 end

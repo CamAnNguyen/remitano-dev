@@ -10,4 +10,17 @@ class Movie < ApplicationRecord
   validates_presence_of :creator
 
   has_many :movie_ratings
+
+  before_save :youtube_info_from_url
+
+  private
+
+  def youtube_info_from_url
+    id = youtube_url.scan(/v=(.*)/).first
+    return if id.nil?
+
+    self.youtube_id = id.first
+    self.youtube_preview = 'https://img.youtube.com/vi/' +
+                           youtube_id + '/hqdefault.jpg'
+  end
 end

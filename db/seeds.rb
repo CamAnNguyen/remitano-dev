@@ -15,14 +15,17 @@ user = User.first || User.create(
 movies = [
   {
     title: 'First movie',
+    youtube_url: 'https://www.youtube.com/watch?v=2AUmvWm5ZDQ',
     description: 'Just the first movie'
   },
   {
     title: 'Second movie',
+    youtube_url: 'https://www.youtube.com/watch?v=XGk2EfbD_Ps',
     description: 'Another movie'
   },
   {
     title: 'Third movie',
+    youtube_url: 'https://www.youtube.com/watch?v=pU8-7BX9uxs',
     description: 'And another one'
   }
 ]
