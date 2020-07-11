@@ -1,14 +1,13 @@
 import { generateAuthActions } from 'redux-token-auth';
 
-import { AUTH_URL } from '../constants/auth';
+import { AUTH_URL } from '../constants/url';
 
 const config = {
-  AUTH_URL,
-  userAttributes: { email: 'email@domain.com' },
-  userRegistrationAttributes: {
-    email: 'email@domain.com',
-    password: 'password'
-  },
+  authUrl: AUTH_URL,
+  // contains attributes from User model,
+  userAttributes: { email: 'email' },
+  // contains attributes that necessary for registration
+  userRegistrationAttributes: {},
 };
 
 const {

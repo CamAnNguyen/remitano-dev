@@ -19,4 +19,10 @@
   form {
     flex-direction: row-reverse;
   }
+
+  .logged-in-header {
+    button {
+      margin-left: 10px;
+    }
+  }
 }

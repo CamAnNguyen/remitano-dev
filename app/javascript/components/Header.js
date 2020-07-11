@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Map } from 'immutable';
 
 import { Col } from 'react-bootstrap';
 
@@ -8,14 +7,16 @@ import LoggedInHeader from './LoggedInHeader';
 import GuestHeader from './GuestHeader';
 
 function Header({
-  currentUser, loginAction, isSignedIn
+  currentUser, loginAction, logoutAction, shareMovie
 }) {
   let rightHeader = (<GuestHeader loginAction={loginAction} />);
 
-  if (isSignedIn) {
+  if (currentUser.isSignedIn) {
     rightHeader = (
       <LoggedInHeader
         currentUser={currentUser}
+        logoutAction={logoutAction}
+        shareMovie={shareMovie}
       />
     );
   }
@@ -36,13 +37,11 @@ function Header({
 }
 
 Header.propTypes = {
-  currentUser: PropTypes.instanceOf(Map).isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  currentUser: PropTypes.object.isRequired,
   loginAction: PropTypes.func.isRequired,
-  isSignedIn: PropTypes.bool
-};
-
-Header.defaultProps = {
-  isSignedIn: false
+  logoutAction: PropTypes.func.isRequired,
+  shareMovie: PropTypes.func.isRequired,
 };
 
 export default Header;

@@ -1,54 +1,42 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Map } from 'immutable';
 
-import { Button, Form, FormControl } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 
-function LoggedInHeader({ currentUser, logoutAction }) {
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
-
-  const loginFunc = useCallback(() => logoutAction(), []);
+function LoggedInHeader({ currentUser, logoutAction, shareMovie }) {
+  const logoutFunc = useCallback(() => logoutAction(), []);
+  const welcomeText = `Welcome ${currentUser.attributes.email}`;
 
   return (
-    <Form inline>
+    <Form inline className="logged-in-header">
       <Button
         variant="secondary"
         size="sm"
         className="mb-2"
-        onClick={loginFunc}
+        onClick={logoutFunc}
       >
         Logout
       </Button>
-      <Form.Label htmlFor="headerFormInputPassword" srOnly>
-        Password
-      </Form.Label>
-      <FormControl
-        id="headerFormInputPassword"
-        ref={passwordRef}
-        type="password"
+      <Button
+        variant="secondary"
         size="sm"
-        placeholder="Password"
-        aria-label="Password"
-        className="mb-2 mr-sm-2"
-      />
-      <Form.Label htmlFor="headerFormInputEmail" srOnly>
-        Email
+        className="mb-2"
+        onClick={shareMovie}
+      >
+        Share a movie
+      </Button>
+      <Form.Label style={{ marginRight: '20px', marginBottom: '5px' }}>
+        {welcomeText}
       </Form.Label>
-      <FormControl
-        id="headerFormInputEmail"
-        ref={emailRef}
-        size="sm"
-        placeholder="Email"
-        aria-label="Email"
-        className="mb-2 mr-sm-2"
-      />
     </Form>
   );
 }
 
 LoggedInHeader.propTypes = {
-  currentUser: PropTypes.instanceOf(Map).isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  currentUser: PropTypes.object.isRequired,
+  logoutAction: PropTypes.func.isRequired,
+  shareMovie: PropTypes.func.isRequired,
 };
 
 export default LoggedInHeader;

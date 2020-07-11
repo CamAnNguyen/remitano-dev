@@ -1,21 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { List } from 'immutable';
 
-import { login } from '../actions/userActions';
 import * as types from '../constants/actionTypes';
-import { CALL_API } from '../middleware/api';
 
 import Content from '../components/Content';
 
-const ContentContainer = ({ currentUser, loginAction }) => (
-  <Content currentUser={currentUser} loginAction={loginAction} />
+const ContentContainer = ({ movies, movieRatings }) => (
+  <Content movies={movies} movieRatings={movieRatings} />
 );
 
 ContentContainer.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  currentUser: PropTypes.object.isRequired,
-  loginAction: PropTypes.func.isRequired,
+  movies: PropTypes.instanceOf(List).isRequired,
+  movieRatings: PropTypes.instanceOf(List).isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -24,11 +22,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loginAction: (email, password) => {
+  voteMovie: (like) => {
     dispatch({ type: types.SET_LOADING });
-    dispatch(login(email)).then(() => dispatch({
-      type: types.UNSET_LOADING
-    }));
   }
 });
 

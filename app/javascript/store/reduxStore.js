@@ -5,15 +5,15 @@ import { reduxTokenAuthReducer } from 'redux-token-auth';
 
 import api from '../middleware/api';
 
-import currentUser from '../reducers/currentUser';
+import ui from '../reducers/ui';
 import movies from '../reducers/movies';
 import movieRatings from '../reducers/movieRatings';
 
 const rootReducer = combineReducers({
-  currentUser,
+  ui,
   movies,
   movieRatings,
-  authToken: reduxTokenAuthReducer
+  userAuth: reduxTokenAuthReducer
 });
 
 const reduxStore = (preloadedState) => {
