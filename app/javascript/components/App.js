@@ -2,10 +2,12 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Container, Row } from 'react-bootstrap';
 
-import HeaderContainer from '../containers/HeaderContainer';
-import ContentContainer from '../containers/ContentContainer';
 import reduxStore from '../store/reduxStore';
 import { verifyCredentials } from '../actions/authTokenActions';
+
+import HeaderContainer from '../containers/HeaderContainer';
+import ContentContainer from '../containers/ContentContainer';
+import LoadingModalContainer from '../containers/LoadingModalContainer';
 
 export const store = reduxStore();
 verifyCredentials(store);
@@ -19,6 +21,9 @@ function App() {
         </Row>
         <Row className="main-content">
           <ContentContainer />
+        </Row>
+        <Row>
+          <LoadingModalContainer />
         </Row>
       </Container>
     </Provider>

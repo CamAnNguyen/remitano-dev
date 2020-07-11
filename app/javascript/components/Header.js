@@ -24,7 +24,7 @@ function Header({
   return (
     <>
       <Col sm={4}>
-        <i className="fa fa-home fa-3x" />
+        <i className="fas fa-home fa-3x" />
         <span className="main-title">
           <b>FUNNY MOVIES</b>
         </span>
