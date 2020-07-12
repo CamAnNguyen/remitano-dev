@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Button, Form } from 'react-bootstrap';
 
-function LoggedInHeader({ currentUser, logoutAction, shareMovie }) {
+function LoggedInHeader({ currentUser, logoutAction, toShareMovieView }) {
   const logoutFunc = useCallback(() => logoutAction(), []);
   const welcomeText = `Welcome ${currentUser.attributes.email}`;
 
@@ -21,7 +21,7 @@ function LoggedInHeader({ currentUser, logoutAction, shareMovie }) {
         variant="secondary"
         size="sm"
         className="mb-2"
-        onClick={shareMovie}
+        onClick={toShareMovieView}
       >
         Share a movie
       </Button>
@@ -36,7 +36,7 @@ LoggedInHeader.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   currentUser: PropTypes.object.isRequired,
   logoutAction: PropTypes.func.isRequired,
-  shareMovie: PropTypes.func.isRequired,
+  toShareMovieView: PropTypes.func.isRequired,
 };
 
 export default LoggedInHeader;

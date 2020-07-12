@@ -7,7 +7,7 @@ import LoggedInHeader from './LoggedInHeader';
 import GuestHeader from './GuestHeader';
 
 function Header({
-  currentUser, loginAction, logoutAction, shareMovie
+  currentUser, loginAction, logoutAction, toShareMovieView
 }) {
   let rightHeader = (<GuestHeader loginAction={loginAction} />);
 
@@ -16,7 +16,7 @@ function Header({
       <LoggedInHeader
         currentUser={currentUser}
         logoutAction={logoutAction}
-        shareMovie={shareMovie}
+        toShareMovieView={toShareMovieView}
       />
     );
   }
@@ -41,7 +41,7 @@ Header.propTypes = {
   currentUser: PropTypes.object.isRequired,
   loginAction: PropTypes.func.isRequired,
   logoutAction: PropTypes.func.isRequired,
-  shareMovie: PropTypes.func.isRequired,
+  toShareMovieView: PropTypes.func.isRequired,
 };
 
 export default Header;
