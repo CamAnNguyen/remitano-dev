@@ -43,6 +43,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'react-rails'
 
+# Serializer gem for rails
+gem 'jsonapi-rails', '~> 0.4.0'
+
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
