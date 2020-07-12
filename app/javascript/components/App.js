@@ -5,9 +5,10 @@ import { Container, Row } from 'react-bootstrap';
 import reduxStore from '../store/reduxStore';
 import { verifyCredentials } from '../actions/authTokenActions';
 
-import HeaderContainer from '../containers/HeaderContainer';
 import ContentContainer from '../containers/ContentContainer';
+import HeaderContainer from '../containers/HeaderContainer';
 import LoadingModalContainer from '../containers/LoadingModalContainer';
+import NotificationContainer from '../containers/NotificationContainer';
 
 export const store = reduxStore();
 verifyCredentials(store);
@@ -18,6 +19,9 @@ function App() {
       <Container className="app-container">
         <Row className="main-header">
           <HeaderContainer />
+        </Row>
+        <Row className="app-notification">
+          <NotificationContainer />
         </Row>
         <Row className="main-content">
           <ContentContainer />

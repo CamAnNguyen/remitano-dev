@@ -42,3 +42,12 @@
     align-items: center;
   }
 }
+
+.app-notification {
+  margin: 5px;
+  text-align: center;
+
+  .alert {
+    width: 100%;
+  }
+}

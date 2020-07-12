@@ -1,9 +1,12 @@
 import { Map } from 'immutable';
 import * as types from '../constants/actionTypes';
+import { MOVIE_LIST } from '../constants/contentViews';
 
 const defaultState = Map({
+  contentView: MOVIE_LIST,
   loading: false,
   notification: '',
+  notificationStyle: 'danger',
 });
 
 export default function ui(state = defaultState, action) {
@@ -15,10 +18,11 @@ export default function ui(state = defaultState, action) {
       return state.set('loading', false);
     }
     case types.SET_NOTIFICATION: {
+      console.log(action);
       return state.set('notification', action.notification);
     }
-    case types.RESET_NOTIFICATION: {
-      return state.set('notification', '');
+    case types.SET_CONTENT_VIEW: {
+      return state.set('contentView', action.contentView);
     }
     default:
       return state;

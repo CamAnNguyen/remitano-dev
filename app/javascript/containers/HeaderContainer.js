@@ -11,7 +11,8 @@ import { checkIdentity } from '../actions/identityActions';
 import {
   setContentView,
   setLoading,
-  unsetLoading
+  unsetLoading,
+  setNotification
 } from '../actions/uiActions';
 
 import { SHARE_MOVIE } from '../constants/contentViews';
@@ -44,20 +45,20 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   loginAction: ({ email, password }) => {
     setLoading();
-    dispatch(checkIdentity(email)).then((apiRes) => {
-      if (apiRes.response.status === 200) {
-        dispatch(signInUser({ email, password })).then(() => {
-          unsetLoading();
-        }).catch((err) => {
-          console.log(err);
-        });
-      } else {
-        dispatch(registerUser({ email, password })).then(() => {
-          unsetLoading();
-        }).catch((err) => {
-          console.log(err);
-        });
-      }
+    dispatch(checkIdentity(email)).then(() => {
+      dispatch(signInUser({ email, password })).then(() => {
+        unsetLoading();
+      }).catch(() => {
+        dispatch(setNotification('Error while siging in'));
+        unsetLoading();
+      });
+    }).catch(() => {
+      dispatch(registerUser({ email, password })).then(() => {
+        unsetLoading();
+      }).catch(() => {
+        dispatch(setNotification('Error while registering new account'));
+        unsetLoading();
+      });
     });
   },
   logoutAction: () => {
