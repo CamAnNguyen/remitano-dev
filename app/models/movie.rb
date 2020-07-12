@@ -4,8 +4,6 @@
 class Movie < ApplicationRecord
   acts_as_paranoid
 
-  validates_presence_of :title
-
   belongs_to :creator, foreign_key: :shared_by, class_name: 'User'
   validates_presence_of :creator
 
@@ -16,10 +14,10 @@ class Movie < ApplicationRecord
   private
 
   def youtube_info_from_url
-    id = youtube_url.scan(/v=(.*)/).first
-    return if id.nil?
+    scan_results = youtube_url.scan(/v=(.*)/).first
+    return if scan_results.nil?
 
-    self.youtube_id = id.first
+    self.youtube_id = scan_results.first
     self.youtube_preview = 'https://img.youtube.com/vi/' +
                            youtube_id + '/hqdefault.jpg'
   end
