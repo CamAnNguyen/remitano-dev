@@ -29,10 +29,22 @@ function Movie({
     } else {
       if (like) {
         voteText = '(voted up)';
-        voteIcon = (<i className="fas fa-thumbs-up fa-2x" />);
+        // NOTE: single <i> tag would cause error DOMException
+        // DOMException: Failed to execute 'removeChild' on 'Node'
+        voteIcon = (
+          <div>
+            <i className="fas fa-thumbs-up fa-2x" />
+          </div>
+        );
       } else {
         voteText = '(voted down)';
-        voteIcon = (<i className="fas fa-thumbs-down fa-2x" />);
+        // NOTE: single <i> tag would cause error DOMException
+        // DOMException: Failed to execute 'removeChild' on 'Node'
+        voteIcon = (
+          <div>
+            <i className="fas fa-thumbs-down fa-2x" />
+          </div>
+        );
       }
     }
   }
