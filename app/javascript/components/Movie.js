@@ -7,29 +7,33 @@ function Movie({
   isSignedIn, movie, like,
   voteUp, voteDown
 }) {
-  let voteUpIcon = <span />;
-  let voteDownIcon = <span />;
+  let voteIcon = <span />;
   let voteText = '';
 
   const voteUpFunc = useCallback(() => voteUp(movie.id), [voteUp, movie.id]);
   const voteDownFunc = useCallback(() => voteDown(movie.id), [voteDown, movie.id]);
 
   if (isSignedIn) {
-    const faStyle = like === undefined ? 'far' : 'fas';
-    voteUpIcon = (
-      <button type="button" onClick={voteUpFunc}>
-        <i className={`${faStyle} fa-thumbs-up fa-2x`} />
-      </button>
-    );
-    voteDownIcon = (
-      <button type="button" onClick={voteDownFunc}>
-        <i className={`${faStyle} fa-thumbs-down fa-2x`} />
-      </button>
-    );
-
     voteText = '(un-voted)';
-    if (like !== undefined) {
-      voteText = like ? '(voted up)' : '(voted down)';
+    if (like === undefined) {
+      voteIcon = (
+        <>
+          <button type="button" onClick={voteUpFunc}>
+            <i className="far fa-thumbs-up fa-2x" />
+          </button>
+          <button type="button" onClick={voteDownFunc}>
+            <i className="far fa-thumbs-down fa-2x" />
+          </button>
+        </>
+      );
+    } else {
+      if (like) {
+        voteText = '(voted up)';
+        voteIcon = (<i className="fas fa-thumbs-up fa-2x" />);
+      } else {
+        voteText = '(voted down)';
+        voteIcon = (<i className="fas fa-thumbs-down fa-2x" />);
+      }
     }
   }
 
@@ -43,8 +47,7 @@ function Movie({
       <div className="movie-information">
         <div>
           <div className="movie-vote-action-block">
-            {(like === undefined || like === true) && voteUpIcon}
-            {(like === undefined || like === false) && voteDownIcon}
+            {voteIcon}
           </div>
           <div className="movie-title">
             {movie.title || 'Movie Title'}
