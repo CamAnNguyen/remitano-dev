@@ -97,10 +97,14 @@
   }
 
   .movie-information {
-    width: 320px;
+    width: 350px;
 
     .movie-vote-action-block {
       float: right;
+    }
+
+    .movie-vote-text-block {
+      width: 100px;
     }
 
     button {

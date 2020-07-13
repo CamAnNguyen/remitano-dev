@@ -9,7 +9,7 @@ handlers[types.VOTE_MOVIE] = (state, action) => {
   if (action.response.status !== 200) return state;
   const { data } = action.response;
 
-  return state.set(data.id, data.like);
+  return state.set(data.movie_id, data.like);
 };
 
 handlers[types.FETCH_RATINGS] = (state, action) => {
