@@ -18,14 +18,17 @@ import { MOVIE_LIST } from '../constants/contentViews';
 import Content from '../components/Content';
 
 const ContentContainer = ({
-  movies, movieRatings, fetchMovies, fetchRatings,
+  isSignedIn, movies, movieRatings, fetchMovies, fetchRatings,
   contentView, shareMovie, voteUp, voteDown
 }) => {
   useEffect(() => fetchMovies(), []);
-  useEffect(() => fetchRatings(), []);
+  useEffect(() => {
+    if (isSignedIn) fetchRatings();
+  }, [isSignedIn]);
 
   return (
     <Content
+      isSignedIn={isSignedIn}
       contentView={contentView}
       movies={movies}
       movieRatings={movieRatings}
@@ -37,6 +40,7 @@ const ContentContainer = ({
 };
 
 ContentContainer.propTypes = {
+  isSignedIn: PropTypes.bool.isRequired,
   movies: PropTypes.instanceOf(Map).isRequired,
   movieRatings: PropTypes.instanceOf(Map).isRequired,
   contentView: PropTypes.string.isRequired,
@@ -48,6 +52,7 @@ ContentContainer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  isSignedIn: state.get('userAuth').currentUser.isSignedIn,
   movies: state.get('movies'),
   movieRatings: state.get('movieRatings'),
   contentView: state.get('ui').get('contentView')
@@ -56,8 +61,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   fetchMovies: () => dispatch(fetchMovies()),
   fetchRatings: () => dispatch(fetchRatings()),
-  voteUp: () => dispatch(voteMovie(true)),
-  voteDown: () => dispatch(voteMovie(false)),
+  voteUp: (movieId) => dispatch(voteMovie(movieId, true)),
+  voteDown: (movieId) => dispatch(voteMovie(movieId, false)),
   shareMovie: (youtubeURL) => {
     dispatch(setLoading());
     dispatch(shareMovie(youtubeURL)).then(() => {

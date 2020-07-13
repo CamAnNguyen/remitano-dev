@@ -21,7 +21,7 @@ module Api
       def movie_ratings
         return head(:forbidden) if current_user.nil?
 
-        render(status: :created, json: current_user.movie_ratings.to_json)
+        render(status: :ok, json: current_user.movie_ratings.to_json)
       end
 
       private

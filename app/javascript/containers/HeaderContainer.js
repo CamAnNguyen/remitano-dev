@@ -8,12 +8,15 @@ import {
   registerUser
 } from '../actions/authTokenActions';
 import { checkIdentity } from '../actions/identityActions';
+
 import {
   setContentView,
   setLoading,
   unsetLoading,
   setNotification
 } from '../actions/uiActions';
+
+import { fetchRatings } from '../actions/movieRatingActions';
 
 import { SHARE_MOVIE } from '../constants/contentViews';
 
@@ -46,9 +49,9 @@ const mapDispatchToProps = (dispatch) => ({
   loginAction: ({ email, password }) => {
     dispatch(setLoading());
     dispatch(checkIdentity(email)).then(() => {
-      dispatch(signInUser({ email, password })).then(() => {
-        dispatch(unsetLoading());
-      }).catch(() => {
+      dispatch(signInUser({ email, password })).then(() => (
+        dispatch(fetchRatings()).then(() => dispatch(unsetLoading()))
+      )).catch(() => {
         dispatch(setNotification('Error while siging in'));
         dispatch(unsetLoading());
       });

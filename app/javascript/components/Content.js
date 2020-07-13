@@ -9,12 +9,14 @@ import MovieList from './MovieList';
 import ShareMovie from './ShareMovie';
 
 function Content({
-  movies, contentView, shareMovie, voteUp, voteDown
+  isSignedIn, movies, movieRatings, contentView, shareMovie, voteUp, voteDown
 }) {
   const views = {
     [MOVIE_LIST]: (
       <MovieList
+        isSignedIn={isSignedIn}
         movies={movies}
+        movieRatings={movieRatings}
         voteUp={voteUp}
         voteDown={voteDown}
       />
@@ -29,7 +31,9 @@ function Content({
 }
 
 Content.propTypes = {
+  isSignedIn: PropTypes.bool.isRequired,
   movies: PropTypes.instanceOf(Map).isRequired,
+  movieRatings: PropTypes.instanceOf(Map).isRequired,
   contentView: PropTypes.string.isRequired,
   shareMovie: PropTypes.func.isRequired,
   voteUp: PropTypes.func.isRequired,

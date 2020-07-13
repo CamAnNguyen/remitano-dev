@@ -97,10 +97,15 @@
   }
 
   .movie-information {
-    width: 450px;
+    width: 400px;
 
-    .movie-vote-block {
+    .movie-vote-action-block {
       float: right;
+    }
+
+    button {
+      border: none;
+      background-color: white;
     }
   }
 }

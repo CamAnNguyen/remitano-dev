@@ -5,14 +5,19 @@ import { Map } from 'immutable';
 
 import Movie from './Movie';
 
-function MovieList({ movies, voteUp, voteDown }) {
+function MovieList({
+  isSignedIn, movies, movieRatings, voteUp, voteDown
+}) {
   const movieList = movies.entrySeq().map((valueArray) => {
     const movie = valueArray[1].toJS();
+    const like = movieRatings.get(movie.id);
 
     return (
       <Movie
         key={movie.id}
+        isSignedIn={isSignedIn}
         movie={movie}
+        like={like}
         voteUp={voteUp}
         voteDown={voteDown}
       />
@@ -27,13 +32,16 @@ function MovieList({ movies, voteUp, voteDown }) {
 }
 
 MovieList.propTypes = {
+  isSignedIn: PropTypes.bool.isRequired,
   movies: PropTypes.instanceOf(Map),
+  movieRatings: PropTypes.instanceOf(Map),
   voteUp: PropTypes.func.isRequired,
   voteDown: PropTypes.func.isRequired,
 };
 
 MovieList.defaultProps = {
-  movies: Map()
+  movies: Map(),
+  movieRatings: Map()
 };
 
 export default MovieList;

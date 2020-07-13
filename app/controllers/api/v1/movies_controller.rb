@@ -15,6 +15,22 @@ module Api
         render(status: :created, jsonapi: movie)
       end
 
+      def update
+        return head(:forbidden) if current_user.nil?
+
+        mr = MovieRating.find_or_create_by(
+          movie_id: params[:id],
+          user_id: current_user.id
+        )
+        mr.like = params[:like]
+
+        if mr.save
+          render(status: :ok, json: mr.to_json)
+        else
+          head(:internal_server_error)
+        end
+      end
+
       def list_with_ratings
         select_string = <<-SQL.strip_heredoc
           movies.id, movies.title, movies.description,
