@@ -22,4 +22,6 @@ handlers[types.FETCH_RATINGS] = (state, action) => {
   return newState;
 };
 
+handlers[types.CLEAR_RATINGS] = () => Map();
+
 export default reducerFactory(Map(), handlers);

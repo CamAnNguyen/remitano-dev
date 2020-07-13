@@ -18,3 +18,7 @@ export const fetchRatings = () => (dispatch) => dispatch({
     url: FETCH_RATINGS_URL,
   }
 });
+
+export const clearRatings = () => (dispatch) => dispatch({
+  type: types.CLEAR_RATINGS
+});

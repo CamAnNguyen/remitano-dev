@@ -18,4 +18,5 @@ export const FETCH_MOVIES = 'FETCH_MOVIES';
 export const SHARE_MOVIE = 'SHARE_MOVIE';
 
 export const FETCH_RATINGS = 'FETCH_RATINGS';
+export const CLEAR_RATINGS = 'CLEAR_RATINGS';
 export const VOTE_MOVIE = 'VOTE_MOVIE';

@@ -16,7 +16,7 @@ import {
   setNotification
 } from '../actions/uiActions';
 
-import { fetchRatings } from '../actions/movieRatingActions';
+import { fetchRatings, clearRatings } from '../actions/movieRatingActions';
 
 import { SHARE_MOVIE } from '../constants/contentViews';
 
@@ -67,6 +67,7 @@ const mapDispatchToProps = (dispatch) => ({
   logoutAction: () => {
     dispatch(setLoading());
     dispatch(signOutUser()).then(() => {
+      dispatch(clearRatings());
       dispatch(unsetLoading());
     });
   },
