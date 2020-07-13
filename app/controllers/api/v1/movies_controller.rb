@@ -15,11 +15,20 @@ module Api
         render(status: :created, jsonapi: movie)
       end
 
-      def query_list
-        render(
-          jsonapi: Movie.all,
-          include: [:creator]
-        )
+      def list_with_ratings
+        select_string = <<-SQL.strip_heredoc
+          movies.id, movies.title, movies.description,
+          movies.youtube_url, movies.youtube_id, movies.youtube_preview,
+          users.email as email,
+          SUM(CASE WHEN movie_ratings.like IS TRUE THEN 1 ELSE 0 END) as vote_up,
+          SUM(CASE WHEN movie_ratings.like IS FALSE THEN 1 ELSE 0 END) as vote_down
+        SQL
+
+        list = Movie.left_outer_joins(:movie_ratings).joins(:creator)
+                    .select(select_string).group('movies.id, users.email')
+                    .group('movies.id, users.email')
+
+        render(status: :ok, json: list.to_json)
       end
     end
   end

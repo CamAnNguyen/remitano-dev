@@ -12,14 +12,14 @@ Rails.application.routes.draw do
     namespace :v1 do
       # mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
 
+      get '/users/ratings', to: 'users#movie_ratings'
       resources :users
 
       get '/identities/:email', to: 'identities#check',
                                 constraints: { email: %r{[^\/]+} }
 
-      resources :movies do
-        get ':include', to: 'movies#query_list'
-      end
+      get '/movies/ratings', to: 'movies#list_with_ratings'
+      resources :movies
     end
   end
 end
