@@ -18,7 +18,6 @@ export default function ui(state = defaultState, action) {
       return state.set('loading', false);
     }
     case types.SET_NOTIFICATION: {
-      console.log(action);
       return state.set('notification', action.notification);
     }
     case types.SET_CONTENT_VIEW: {
