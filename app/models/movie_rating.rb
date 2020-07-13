@@ -7,5 +7,6 @@ class MovieRating < ApplicationRecord
   belongs_to :user
   belongs_to :movie
 
-  validates_presence_of :movie, :user, :like
+  validates_presence_of :movie, :user
+  validates_inclusion_of :like, in: [true, false]
 end
