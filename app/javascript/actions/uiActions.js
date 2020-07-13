@@ -6,11 +6,13 @@ export const setContentView = (view) => (dispatch) => dispatch({
 });
 
 export const setLoading = () => (dispatch) => dispatch({
-  type: types.SET_LOADING
+  type: types.SET_LOADING,
+  loading: true
 });
 
 export const unsetLoading = () => (dispatch) => dispatch({
-  type: types.UNSET_LOADING
+  type: types.UNSET_LOADING,
+  loading: false
 });
 
 export const setNotification = (notification) => (dispatch) => dispatch({

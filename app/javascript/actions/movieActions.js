@@ -1,15 +1,20 @@
 import * as types from '../constants/actionTypes';
-import { AUTH_URL } from '../constants/auth';
+import { FETCH_MOVIES_URL, MOVIE_API_URL } from '../constants/url';
 import { CALL_API } from '../middleware/api';
 
-export const getUserMovies = (email, password) => (dispatch) => dispatch({
-  type: types.LOGIN_USER,
+export const fetchMovies = () => (dispatch) => dispatch({
+  type: types.FETCH_MOVIES,
   [CALL_API]: {
-    endpoint: AUTH_URL,
-    options: {
-      credentials: 'same-origin',
-      method: 'post',
-      body: { email, password }
-    }
+    method: 'get',
+    url: FETCH_MOVIES_URL,
+  }
+});
+
+export const shareMovie = (youtubeURL) => (dispatch) => dispatch({
+  type: types.SHARE_MOVIE,
+  [CALL_API]: {
+    method: 'post',
+    url: MOVIE_API_URL,
+    data: { youtubeURL },
   }
 });
