@@ -15,5 +15,7 @@ export const CHECK_IDENTITY = 'CHECK_IDENTITY';
 export const SET_CONTENT_VIEW = 'SET_CONTENT_VIEW';
 
 export const FETCH_MOVIES = 'FETCH_MOVIES';
-export const VOTE_MOVIE = 'VOTE_MOVIE';
 export const SHARE_MOVIE = 'SHARE_MOVIE';
+
+export const FETCH_RATINGS = 'FETCH_RATINGS';
+export const VOTE_MOVIE = 'VOTE_MOVIE';

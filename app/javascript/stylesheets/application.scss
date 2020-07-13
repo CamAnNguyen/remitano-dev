@@ -75,3 +75,32 @@
 #share-movie-content {
   padding: 10px 10px 10px 0px;
 }
+
+.single-movie-container {
+  margin: 10px;
+  padding: 5px;
+
+  display: flex;
+
+  > div {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .movie-title {
+    color: #E30425;
+    font-weight: bolder;
+  }
+
+  .movie-player {
+    margin-right: 30px;
+  }
+
+  .movie-information {
+    width: 450px;
+
+    .movie-vote-block {
+      float: right;
+    }
+  }
+}

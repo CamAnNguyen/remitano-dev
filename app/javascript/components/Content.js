@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { List } from 'immutable';
+import { Map } from 'immutable';
 
 import { MOVIE_LIST, SHARE_MOVIE } from '../constants/contentViews';
 
@@ -11,7 +11,7 @@ import ShareMovie from './ShareMovie';
 function Content({
   movies, contentView, shareMovie, voteUp, voteDown
 }) {
-  const contentList = {
+  const views = {
     [MOVIE_LIST]: (
       <MovieList
         movies={movies}
@@ -23,13 +23,13 @@ function Content({
       <ShareMovie shareMovie={shareMovie} />
     )
   };
+  const currentView = views[contentView] || <span />;
 
-  return contentList[contentView];
+  return currentView;
 }
 
 Content.propTypes = {
-  movies: PropTypes.instanceOf(List).isRequired,
-  movieRatings: PropTypes.instanceOf(List).isRequired,
+  movies: PropTypes.instanceOf(Map).isRequired,
   contentView: PropTypes.string.isRequired,
   shareMovie: PropTypes.func.isRequired,
   voteUp: PropTypes.func.isRequired,

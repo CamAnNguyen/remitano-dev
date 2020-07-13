@@ -44,27 +44,27 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   loginAction: ({ email, password }) => {
-    setLoading();
+    dispatch(setLoading());
     dispatch(checkIdentity(email)).then(() => {
       dispatch(signInUser({ email, password })).then(() => {
-        unsetLoading();
+        dispatch(unsetLoading());
       }).catch(() => {
         dispatch(setNotification('Error while siging in'));
-        unsetLoading();
+        dispatch(unsetLoading());
       });
     }).catch(() => {
       dispatch(registerUser({ email, password })).then(() => {
-        unsetLoading();
+        dispatch(unsetLoading());
       }).catch(() => {
         dispatch(setNotification('Error while registering new account'));
-        unsetLoading();
+        dispatch(unsetLoading());
       });
     });
   },
   logoutAction: () => {
-    setLoading();
+    dispatch(setLoading());
     dispatch(signOutUser()).then(() => {
-      unsetLoading();
+      dispatch(unsetLoading());
     });
   },
   toShareMovieView: () => dispatch(setContentView(SHARE_MOVIE)),

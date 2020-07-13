@@ -1,38 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { List } from 'immutable';
-
-import { Container, Col, Row } from 'react-bootstrap';
+import { Map } from 'immutable';
 
 import Movie from './Movie';
 
-function MovieList({
-  movies, voteMovie
-}) {
-  const movieList = movies.map((movie) => (
-    <Movie key={movie.id} movie={movie} voteMovie={voteMovie} />
-  ));
+function MovieList({ movies, voteUp, voteDown }) {
+  const movieList = movies.entrySeq().map((valueArray) => {
+    const movie = valueArray[1].toJS();
+
+    return (
+      <Movie
+        key={movie.id}
+        movie={movie}
+        voteUp={voteUp}
+        voteDown={voteDown}
+      />
+    );
+  });
 
   return (
-    <Container>
-      <Row>
-        <Col>
-          MOVIE LIST
-        </Col>
-      </Row>
-    </Container>
+    <>
+      {movieList}
+    </>
   );
 }
 
 MovieList.propTypes = {
-  movies: PropTypes.instanceOf(List),
+  movies: PropTypes.instanceOf(Map),
   voteUp: PropTypes.func.isRequired,
   voteDown: PropTypes.func.isRequired,
 };
 
 MovieList.defaultProps = {
-  movies: List()
+  movies: Map()
 };
 
 export default MovieList;
