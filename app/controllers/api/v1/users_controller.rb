@@ -5,21 +5,21 @@ module Api
     # User controller/API
     class UsersController < HomeController
       def destroy
-        return head(:forbidden) if current_user.nil?
+        return head(:unauthorized) if current_user.nil?
 
         User.destroy(params[:id])
       end
 
       def update
-        return head(:forbidden) if current_user.nil?
+        return head(:unauthorized) if current_user.nil?
 
         user = User.find(params[:id])
-        user.update_attributes(fruit_params)
+        user.update_attributes(params)
         render json: user
       end
 
       def movie_ratings
-        return head(:forbidden) if current_user.nil?
+        return head(:unauthorized) if current_user.nil?
 
         render(status: :ok, json: current_user.movie_ratings.to_json)
       end

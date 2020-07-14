@@ -5,7 +5,7 @@ module Api
     # User controller/API
     class MoviesController < HomeController
       def create
-        return head(:forbidden) if current_user.nil?
+        return head(:unauthorized) if current_user.nil?
 
         movie = Movie.find_or_create_by(
           youtube_url: params[:youtubeURL],
@@ -16,7 +16,7 @@ module Api
       end
 
       def update
-        return head(:forbidden) if current_user.nil?
+        return head(:unauthorized) if current_user.nil?
 
         mr = MovieRating.find_or_create_by(
           movie_id: params[:id],

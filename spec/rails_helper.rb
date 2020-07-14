@@ -8,6 +8,9 @@ require File.expand_path('../config/environment', __dir__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+# require 'capybara/rspec'
+# require 'capybara/dsl'
+# require 'database_cleaner'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -67,14 +70,17 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  config.include FactoryBot::Syntax::Methods
-  config.include AuthSpecHelper::Includables, type: :request
-  config.extend AuthSpecHelper::Extensions, type: :request
-
   Shoulda::Matchers.configure do |matcher_config|
     matcher_config.integrate do |with|
       with.test_framework :rspec
       with.library :rails
     end
   end
+
+  config.include FactoryBot::Syntax::Methods
+
+  config.include AuthSpecHelper::Includables, type: :request
+  config.extend AuthSpecHelper::Extensions, type: :request
+
+  config.include MovieSpecHelper
 end

@@ -8,11 +8,11 @@ describe Movie, type: :model do
   end
 
   it 'is not valid a null title' do
-    expect(FactoryBot.build(:movie, title: nil)).not_to be_valid
+    expect(FactoryBot.build(:movie, title: nil)).to be_valid
   end
 
   it 'is not valid an empty title' do
-    expect(FactoryBot.build(:movie, title: '')).not_to be_valid
+    expect(FactoryBot.build(:movie, title: '')).to be_valid
   end
 
   it 'is valid with a null description' do

@@ -9,6 +9,7 @@ module AuthSpecHelper
 
   module Includables
     HTTP_HELPERS_TO_OVERRIDE = %i[get post patch put delete].freeze
+
     # Override helpers
     HTTP_HELPERS_TO_OVERRIDE.each do |helper|
       define_method(helper) do |path, **args|

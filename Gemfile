@@ -63,6 +63,8 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
+  gem 'database_cleaner-active_record', '~> 1.8'
+  gem 'rspec-rails', '~> 4.0'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
@@ -70,7 +72,6 @@ end
 
 group :development, :test do
   gem 'factory_bot_rails', '~> 6.0'
-  gem 'rspec-rails', '~> 4.0'
   gem 'rubocop', '~> 0.86.0'
   gem 'rubocop-performance', '~> 1.6'
   gem 'rubocop-rspec', '~> 1.41'
